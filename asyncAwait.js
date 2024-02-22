@@ -3,8 +3,6 @@
 //The async functions work asynchronously, moving on till the code results in a resolved promise output.
 //Await keyword is used to wait till we get a resolved promise for a particular function.
 
-const { error } = require('console');
-
 //Using the following line because fetch is not included in node v14. Use npm install node-fetch before using the following line.
 const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
 
