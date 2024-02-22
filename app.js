@@ -43,3 +43,15 @@
 //     })
 // })
 // console.log("I'm reading the file but i'm also moving on to the next action which depicts asynchronous nature.")
+
+//3. create server:
+const fs = require('fs');
+const html = fs.readFileSync('./Template/index.html', 'utf-8');
+const http = require('http');
+const server = http.createServer((req, res) => { 
+    res.end(html);
+    console.log('server created.');
+});
+server. listen(3000, () => {
+    console.log('server started');
+});
