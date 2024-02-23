@@ -45,13 +45,51 @@
 // console.log("I'm reading the file but i'm also moving on to the next action which depicts asynchronous nature.")
 
 //3. create server:
-const fs = require('fs');
-const html = fs.readFileSync('./Template/index.html', 'utf-8');
+// const fs = require('fs');
+// const html = fs.readFileSync('./Template/index.html', 'utf-8');
+// const http = require('http');
+// const server = http.createServer((req, res) => { 
+//     res.end(html);
+//     console.log('server created.');
+// });
+// server. listen(3000, () => {
+//     console.log('server started');
+// });
+
+//4. Routes:
 const http = require('http');
-const server = http.createServer((req, res) => { 
-    res.end(html);
-    console.log('server created.');
-});
-server. listen(3000, () => {
-    console.log('server started');
-});
+const fs = require('fs')
+let html = fs.readFileSync('./Template/index.html', 'utf-8');
+let server = http.createServer((req, res) => {
+    let path = req.url;
+    if(path === '/' || path.toLocaleLowerCase()==='/home'){
+        res.writeHead(200, {
+            'Content-Type': 'text/html',
+            'my-header': 'meow'
+        });
+    res.end(html.replace('{{%CONTENT%}}', 'You are in Meow Home page.'));
+    }
+    else if (path.toLocaleLowerCase()==='/about'){
+        res.writeHead(200, {
+            'Content-Type': 'text/html',
+            'my-header': 'meow'
+        });
+        res.end(html.replace('{{%CONTENT%}}', 'You are in Meow About page page.'));
+    }
+    else if(path.toLocaleLowerCase() ==='/contact'){
+        res.writeHead(200, {
+            'Content-Type': 'text/html',
+            'my-header': 'meow'
+        });
+        res.end(html.replace('{{%CONTENT%}}', 'You are in Meow Contacts page.'));
+    }else{
+        res.writeHead(404, {
+            'Content-Type': 'text/html',
+            'my-header': 'meow'
+        });
+        res.end(html.replace('{{%CONTENT%}}', 'ERROR 404:Page not found'));
+    }
+})
+server.listen(3000, ()=>{
+    console.log('server started')
+})
