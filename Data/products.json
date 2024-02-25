@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "Jackson",
+      "color":"Black",
+      "price": "free",
+      "modeName": "black cat",
+      "modelNumber": "MHGT3HN/A",
+      "age": "1 month old",
+      "behaviour": "saint",
+      "Description": "He is 1month old, but acts like he's a 60yr old grandma.",
+      "productImage":"https://upload.wikimedia.org/wikipedia/commons/b/b8/1-month-old_kitten_38.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Meredeth",
+        "color":"White",
+        "price": "nothing",
+        "modeName": "white cat",
+        "modelNumber": "MHGT3HN/A",
+        "age": "3 months old",
+        "behaviour": "still figuring out",
+        "Description": "She is 3 months old, but weird sometimes, but mostly she's fine.",
+        "productImage":"/Users/rutuja/Downloads/white.jpeg"
+    },
+    {
+        "id": 3,
+        "name": "Chaos",
+        "color":"Orange",
+        "price": "1 life",
+        "modeName": "orange cat",
+        "modelNumber": "MHGT3HN/A",
+        "age": "1.5 months old",
+        "behaviour": "she's OKAY",
+        "Description": "She is 3 months old and her name explains the rest.",
+        "productImage":"/Users/rutuja/Downloads/orange.jpeg"
+    }
+] 

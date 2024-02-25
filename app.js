@@ -60,14 +60,35 @@
 const http = require('http');
 const fs = require('fs')
 let html = fs.readFileSync('./Template/index.html', 'utf-8');
+const data = JSON.parse(fs.readFileSync('./Data/products.json', 'utf-8'));
+const prodlist = fs.readFileSync('./Template/product-list.html', 'utf-8');
+const url = require('url');
+// console.log(data);
+
+let prodpropertiesdisplay = data.map((prod) => {
+    let output = prodlist.replace("{{%NAME%}}", prod.name);
+    output = output.replace("{{%MODELNAME%}}", prod.modeName);
+    output = output.replace("{{%MODELNO%}}", prod.modelNumber);
+    output = output.replace("{{%AGE%}}", prod.age);
+    output = output.replace("{{%BEHAVIOUR%}}", prod.behaviour);
+    output = output.replace("{{%DESCRIPTION%}}", prod.Description);
+    output = output.replace("{{%PRICE%}}", prod.price);
+    output = output.replace("{{%COLOR%}}", prod.color);
+    output = output.replace("{{%PRODUCTIMAGE%}}", prod.productImage);
+    output = output.replace("{{%ID%}}", prod.id);
+    return output;
+})
+
 let server = http.createServer((req, res) => {
-    let path = req.url;
+    //object destructuring:
+    let {query, pathname: path} = url.parse(req.url, true);
+    // let path = req.url;
     if(path === '/' || path.toLocaleLowerCase()==='/home'){
         res.writeHead(200, {
             'Content-Type': 'text/html',
             'my-header': 'meow'
         });
-    res.end(html.replace('{{%CONTENT%}}', 'You are in Meow Home page.'));
+    res.end(html.replace('{{%CONTENT%}}', "Welcom to MeowLand!!!"));
     }
     else if (path.toLocaleLowerCase()==='/about'){
         res.writeHead(200, {
@@ -82,11 +103,27 @@ let server = http.createServer((req, res) => {
             'my-header': 'meow'
         });
         res.end(html.replace('{{%CONTENT%}}', 'You are in Meow Contacts page.'));
-    }else{
+    }
+    else if (path.toLocaleLowerCase() === '/products'){
+        if(!query.id){
+            res.writeHead(200, {
+                "Content-Type": "text/html",
+                "my-header": "meow"
+            })
+            res.end(html.replace('{{%CONTENT%}}', prodpropertiesdisplay.join(',')));
+            // "You wanna buy a meow??? You've reached the right page"
+            console.log(prodpropertiesdisplay);
+        }else{
+            res.end('This is Meow number: '+query.id); 
+            console.log(query.id)
+        }
+
+    }
+    else{
         res.writeHead(404, {
             'Content-Type': 'text/html',
             'my-header': 'meow'
-        });
+        }) ;
         res.end(html.replace('{{%CONTENT%}}', 'ERROR 404:Page not found'));
     }
 })
