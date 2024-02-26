@@ -7,6 +7,10 @@ https://github.com/manojjha86/NODE-JS/tree/main
 video series-
 https://youtu.be/5eaBOxXABkU?si=lqcxQ7xYrdmCwTSJ
 
+Extends - The extends keyword is used in class declarations or class expressions to create a class that is a child of another class.
+
+Super - Used to call the constructor of the parent class. Inherits all the logic from the base class.
+
 Types of URLs:
 1. file based- nodeapp.com/index.html
 2. resource based url- nodeapp.com/Home
@@ -44,3 +48,15 @@ What is an event?
     They call event handlers.
 
     3. event handler - allow web pages to respond appropriately to change.
+
+- Here are some of the default events in Node.js:
+    'exit': : Emitted when the process is about to exit.
+        process.on('exit', function() {
+            console.log('The process is about to exit.');
+        });
+    'uncaughtException': : Emitted when an uncaught exception occurs.
+    'warning': : Emitted when a warning occurs.
+    'SIGTERM': : Emitted when the process receives a SIGTERM signal.
+    'SIGINT': : Emitted when the process receives a SIGINT signal.
+    'message': : Emitted when a message is received from a worker thread.
+    'error': : Emitted when an error occurs.

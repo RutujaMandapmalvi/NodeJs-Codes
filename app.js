@@ -62,10 +62,17 @@ const fs = require('fs')
 let html = fs.readFileSync('./Template/index.html', 'utf-8');
 const data = JSON.parse(fs.readFileSync('./Data/products.json', 'utf-8'));
 const prodlist = fs.readFileSync('./Template/product-list.html', 'utf-8');
-const prodDetail = fs.readFileSync('./Template/prod-details.html', 'utf-8');
 const url = require('url');
+const prodDetail = fs.readFileSync('./Template/prod-details.html', 'utf-8');
 let replaceHtml = require('./Modules/replaceHtml');
 let contactsData = fs.readFileSync('./Template/contacts-data.html', 'utf-8');
+let user = require('./Modules/user.js');
+
+let myEmitter = new user();
+myEmitter.on('userCreate', (name, id) => {
+    console.log(`Meow named ${name} with the id ${id} has been created!`);
+})
+myEmitter.emit('userCreate', 'Derek', 4);
 
 let server = http.createServer();
 server.on('request', (req, res) => {
