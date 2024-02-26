@@ -67,7 +67,8 @@ const url = require('url');
 let replaceHtml = require('./Modules/replaceHtml');
 let contactsData = fs.readFileSync('./Template/contacts-data.html', 'utf-8');
 
-let server = http.createServer((req, res) => {
+let server = http.createServer();
+server.on('request', (req, res) => {
     //object destructuring:
     let {query, pathname: path} = url.parse(req.url, true);
     // let path = req.url;
@@ -90,7 +91,7 @@ let server = http.createServer((req, res) => {
             'Content-Type': 'text/html',
             'my-header': 'meow'
         });
-        res.end(contactsData);
+        res.end(contactsData); 
         // res.end(html.replace('{{%CONTENT%}}', 'You are in Meow Contacts page.'));
     }
     else if (path.toLocaleLowerCase() === '/products'){
@@ -107,6 +108,10 @@ let server = http.createServer((req, res) => {
             // "You wanna buy a meow??? You've reached the right page"
             // console.log(prodpropertiesdisplay);
         }else{
+            res.writeHead(200, {
+                "Content-Type": "text/html",
+                "my-header": "meow"
+            });
             let prod = data[query.id];
             let prodDetailResponseHtml = replaceHtml(prodDetail, prod);
             res.end(html.replace('{{%CONTENT%}}', prodDetailResponseHtml)); 
@@ -122,5 +127,5 @@ let server = http.createServer((req, res) => {
     }
 })
 server.listen(3000, ()=>{
-    console.log('server started')
+    console.log('server started');
 })

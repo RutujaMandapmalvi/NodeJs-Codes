@@ -9,5 +9,6 @@ module.exports = function replaceHtml(template, product){
     output = output.replace("{{%COLOR%}}", product.color);
     output = output.replace("{{%PRODUCTIMAGE%}}", product.productImage);
     output = output.replace("{{%ID%}}", product.id);
+    output = output.replace("{{%DESCRIPTION%}}", product.Description);
     return output;
 }

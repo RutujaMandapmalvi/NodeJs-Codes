@@ -31,3 +31,16 @@ e.g., let {query, pathname: path}
         path: '/%7B%7B%IMAGE%%7D%7D',
         href: '/%7B%7B%IMAGE%%7D%7D'
     }
+
+What is an event?
+-  Every action on a computer is an event. Like when a connection is made or a file is opened.
+
+- 3 main players in event driven architecture:
+    1. event emitter - emits event when something imp happens in the app. 
+    eg., a req hitting the server, timer expiring, file finishing to read.
+    They call event listeners.
+
+    2. event listener - event is listened by these, they call the callback functions attached to them(event listners).
+    They call event handlers.
+
+    3. event handler - allow web pages to respond appropriately to change.
