@@ -62,22 +62,23 @@ const fs = require('fs')
 let html = fs.readFileSync('./Template/index.html', 'utf-8');
 const data = JSON.parse(fs.readFileSync('./Data/products.json', 'utf-8'));
 const prodlist = fs.readFileSync('./Template/product-list.html', 'utf-8');
+const prodDetail = fs.readFileSync('./Template/prod-details.html', 'utf-8');
 const url = require('url');
 // console.log(data);
 
-let prodpropertiesdisplay = data.map((prod) => {
-    let output = prodlist.replace("{{%NAME%}}", prod.name);
-    output = output.replace("{{%MODELNAME%}}", prod.modeName);
-    output = output.replace("{{%MODELNO%}}", prod.modelNumber);
-    output = output.replace("{{%AGE%}}", prod.age);
-    output = output.replace("{{%BEHAVIOUR%}}", prod.behaviour);
-    output = output.replace("{{%DESCRIPTION%}}", prod.Description);
-    output = output.replace("{{%PRICE%}}", prod.price);
-    output = output.replace("{{%COLOR%}}", prod.color);
-    output = output.replace("{{%PRODUCTIMAGE%}}", prod.productImage);
-    output = output.replace("{{%ID%}}", prod.id);
+function replaceHtml(template, product){
+    let output = template.replace("{{%NAME%}}", product.name);
+    output = output.replace("{{%MODELNAME%}}", product.modeName);
+    output = output.replace("{{%MODELNO%}}", product.modelNumber);
+    output = output.replace("{{%AGE%}}", product.age);
+    output = output.replace("{{%BEHAVIOUR%}}", product.behaviour);
+    output = output.replace("{{%DESCRIPTION%}}", product.Description);
+    output = output.replace("{{%PRICE%}}", product.price);
+    output = output.replace("{{%COLOR%}}", product.color);
+    output = output.replace("{{%PRODUCTIMAGE%}}", product.productImage);
+    output = output.replace("{{%ID%}}", product.id);
     return output;
-})
+}
 
 let server = http.createServer((req, res) => {
     //object destructuring:
@@ -106,16 +107,21 @@ let server = http.createServer((req, res) => {
     }
     else if (path.toLocaleLowerCase() === '/products'){
         if(!query.id){
+            let productHtmlArray = data.map((prod) => {
+                return replaceHtml(prodlist, prod);
+            })
+            let prodDetailResponse = html.replace('{{%CONTENT%}}', productHtmlArray.join(','));
             res.writeHead(200, {
                 "Content-Type": "text/html",
                 "my-header": "meow"
             })
-            res.end(html.replace('{{%CONTENT%}}', prodpropertiesdisplay.join(',')));
+            res.end(prodDetailResponse);
             // "You wanna buy a meow??? You've reached the right page"
-            console.log(prodpropertiesdisplay);
+            // console.log(prodpropertiesdisplay);
         }else{
-            res.end('This is Meow number: '+query.id); 
-            console.log(query.id)
+            let prod = data[query.id];
+            let prodDetailResponseHtml = replaceHtml(prodDetail, prod);
+            res.end(html.replace('{{%CONTENT%}}', prodDetailResponseHtml)); 
         }
 
     }

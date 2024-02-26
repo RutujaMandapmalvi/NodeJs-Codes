@@ -1,6 +1,6 @@
 [
     {
-      "id": 1,
+      "id": 0,
       "name": "Jackson",
       "color":"Black",
       "price": "free",
@@ -12,7 +12,7 @@
       "productImage":"https://upload.wikimedia.org/wikipedia/commons/b/b8/1-month-old_kitten_38.jpg"
     },
     {
-        "id": 2,
+        "id": 1,
         "name": "Meredeth",
         "color":"White",
         "price": "nothing",
@@ -24,7 +24,7 @@
         "productImage":"/Users/rutuja/Downloads/white.jpeg"
     },
     {
-        "id": 3,
+        "id": 2,
         "name": "Chaos",
         "color":"Orange",
         "price": "1 life",
