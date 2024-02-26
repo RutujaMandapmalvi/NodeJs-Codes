@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contact-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            margin: 15px;
+        }
+
+        .contact-image {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-details {
+            padding: 15px;
+        }
+
+        .contact-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .contact-email {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .contact-phone {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-card">
+        <div class="contact-image">
+            <img src="/Users/rutuja/Code/NodeJs-Codes/Photos/black.jpeg" alt="Contact Image">
+        </div>
+        <div class="contact-details">
+            <div class="contact-name">Jackson</div>
+            <div class="contact-email">jackson.1@meow.com</div>
+            <div class="contact-phone">123-456-7890</div>
+        </div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-image">
+            <img src="/Users/rutuja/Code/NodeJs-Codes/Photos/white.jpeg" alt="Contact Image">
+        </div>
+        <div class="contact-details">
+            <div class="contact-name">Meredeth</div>
+            <div class="contact-email">meredeth@meow.com</div>
+            <div class="contact-phone">987-654-3210</div>
+        </div>
+    </div>
+
+    <div class="contact-card">
+        <div class="contact-image">
+            <img src="/Users/rutuja/Code/NodeJs-Codes/Photos/orange.jpeg" alt="Contact Image">
+        </div>
+        <div class="contact-details">
+            <div class="contact-name">Chaos</div>
+            <div class="contact-email">chaos@meow.com</div>
+            <div class="contact-phone">555-123-4567</div>
+        </div>
+    </div>
+
+</body>
+</html>
