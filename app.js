@@ -136,3 +136,9 @@ server.on('request', (req, res) => {
 server.listen(3000, ()=>{
     console.log('server started');
 })
+
+//I want to display the large-file.txt content using streams:
+server.on('request', (req, res) => {
+    let rs = fs.createReadStream('./Data/large-file.txt');
+    rs.pipe(res);
+})

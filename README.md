@@ -60,3 +60,28 @@ What is an event?
     'SIGINT': : Emitted when the process receives a SIGINT signal.
     'message': : Emitted when a message is received from a worker thread.
     'error': : Emitted when an error occurs.
+
+- Streams - 
+    In fs.readFile/writeFile methods, initially, all the data from the file is first taken in a buffer and then the whole file is read as follows:
+
+    FILE --> BUFFER --> fs.readFile();
+
+    With Streams, we can process data piece by piece, instead of read/write whole data at once.
+
+    FILE --> READ STREAM(reads chunks of data and sends forward, freeing the memory) --> READ BUFFER --> fs.readStream\
+
+    - 4 types of Streams:
+
+    1. Readable Streams - read data chunk by chunk. eg, request stream, read file  stream.
+    IMP events: data & end
+    IMP methods: read & pipe
+
+    2. Writable Streams - write data chunk by chunk. eg, request stream, read file  stream.
+    IMP events: drain & finish
+    IMP methods: write & end
+
+    3. Duplex Streams - combination of readable and writable streams
+    e.g., web sockets
+
+    4. Transform Streams - they are duplex streams which can modify data as it is written or read.
+    e.g., zlib
